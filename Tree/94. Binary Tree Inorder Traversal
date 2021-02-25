@@ -1,0 +1,26 @@
+```
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> stk;
+        //中序遍历需先判断当前结点是否存在，若存在则将该节点放入栈中，再将当前结点设置为结点的左孩子，
+        //若不存在则取栈顶元素为cur，当且仅当栈空cur也为空，循环结束。
+        //先访问..最左子树..结点，再访问其父节点，再访问其兄弟
+        while (root != nullptr || !stk.empty())
+        {
+            while (root != nullptr)
+            {
+                stk.push(root);
+                root = root->left;
+            }
+            root = stk.top();
+            stk.pop();
+            res.push_back(root->val);
+            root = root->right;
+        }
+        return res;
+    }
+};
+
+```
